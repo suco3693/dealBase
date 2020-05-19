@@ -1,5 +1,5 @@
 <template>
-    <v-card elevation="24" width="21em" height="31em" hover color="#d1d0d0 " class="db-login-card" shaped>
+    <v-card elevation="24" width="21em" height="31em" hover color="#d1d0d0 " class="db-login-card">
         <div class="db-container">
             <div class="db-login-row">
                 <h2 class="db-login-title">Login</h2>
