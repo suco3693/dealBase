@@ -1,7 +1,11 @@
 <template>
-    <v-app id="db-main">
-        <landing-page />
-    </v-app>
+    <div id="app">
+        <div id="nav">
+            <router-link to="/">LandingPage</router-link> |
+            <router-link to="/deals">Deal Page</router-link>
+        </div>
+        <router-view />
+    </div>
 </template>
 
 <script lang="ts">
@@ -18,7 +22,7 @@ export default defineComponent({
 });
 </script>
 <style scoped>
-#db-main {
+#app {
     background-color: #727272;
     color: #8e0000 !important;
     font-family: 'Roboto' !important;
