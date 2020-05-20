@@ -15,6 +15,7 @@ import { mapActions } from 'vuex';
 import LoginCard from '@/components/LoginCard';
 // eslint-disable-next-line no-unused-vars
 import { userInfoType } from '@/hooks/useLoginUserInfo.ts';
+import { useRouter } from '@/hooks/useRouter.ts';
 
 export default defineComponent({
     name: 'LandingPage',
@@ -23,9 +24,10 @@ export default defineComponent({
     },
     setup(props, context) {
         mapActions(['setUserInfo']);
-
+        const { changePage } = useRouter();
         function saveUserInfo(userInfo: userInfoType) {
             context.root.$store.dispatch('setUserInfo', userInfo);
+            changePage(context.root.$router, 'Deals', {});
         }
 
         return {
