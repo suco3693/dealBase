@@ -14,7 +14,6 @@ export default new Vuex.Store({
     },
     mutations: {
         setUserInfo(state, newUserInfo: userInfoType) {
-            console.log(state, 'hhe');
             state.userInfo = newUserInfo;
         },
     },
