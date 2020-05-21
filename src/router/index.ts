@@ -20,12 +20,12 @@ const routes: Array<RouteConfig> = [
     },
     {
         path: '/deals-stats',
-        name: 'DealStatsPage',
+        name: 'DealStats',
         component: DealStatsPage,
     },
     {
         path: '/user',
-        name: 'UserPage',
+        name: 'User',
         component: UserPage,
     },
 ];

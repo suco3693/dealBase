@@ -16,8 +16,8 @@ export function useRouter() {
 
 export function useRouterBar() {
     const routes = [
-        { name: 'Deal', route: '/deals' },
-        { name: 'DealStats', route: 'stats' },
+        { name: 'Deals', route: '/deals' },
+        { name: 'DealStats', route: '/deals-stats' },
         { name: 'User', route: '/user' },
     ];
     return { routes };

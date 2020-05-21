@@ -2,7 +2,7 @@
     <v-content>
         <router-bar />
         <v-container>
-            I am Deal page
+            <div>I am Deals Page</div>
         </v-container>
     </v-content>
 </template>
@@ -16,9 +16,9 @@ export default defineComponent({
     components: {
         RouterBar,
     },
-    setup: () => ({
+    setup() {
         //
-    }),
+    },
 });
 </script>
 <style scoped></style>
