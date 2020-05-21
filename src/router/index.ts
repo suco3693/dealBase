@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import LandingPage from '@/views/LandingPage';
+import DealPage from '@/views/DealPage';
+import DealStatsPage from '@/views/DealStatsPage';
+import UserPage from '@/views/UserPage';
 
 Vue.use(VueRouter);
 
@@ -13,10 +16,17 @@ const routes: Array<RouteConfig> = [
     {
         path: '/deals',
         name: 'Deals',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '../views/DealPage'),
+        component: DealPage,
+    },
+    {
+        path: '/deals-stats',
+        name: 'DealStats',
+        component: DealStatsPage,
+    },
+    {
+        path: '/user',
+        name: 'User',
+        component: UserPage,
     },
 ];
 
