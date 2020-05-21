@@ -13,3 +13,12 @@ export function useRouter() {
         changePage,
     };
 }
+
+export function useRouterBar() {
+    const routes = [
+        { name: 'Deal', route: '/deals' },
+        { name: 'DealStats', route: 'stats' },
+        { name: 'User', route: '/user' },
+    ];
+    return { routes };
+}
