@@ -21,7 +21,6 @@ export function useDealTable() {
                 value: paramCase(text),
                 align: 'center',
                 sortable: true,
-                class: 'db-table-header',
             },
             extraOptions,
         );
