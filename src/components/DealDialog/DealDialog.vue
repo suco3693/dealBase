@@ -13,10 +13,10 @@
                 </v-row>
                 <v-row class="db-just-cent">
                     <v-col>
-                        Slot1
+                        Card1
                     </v-col>
                     <v-col>
-                        Slot2
+                        Card2
                     </v-col>
                 </v-row>
             </v-container>
@@ -37,19 +37,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@vue/composition-api';
+import { defineComponent } from '@vue/composition-api';
+import { useDealDialog } from '@/hooks/useDialog.ts';
 
 export default defineComponent({
     name: 'DealDialog',
 
     setup() {
-        let dialog = ref(false);
-        function submitDialog() {
-            dialog.value = false;
-        }
-        function cancelDialog() {
-            dialog.value = false;
-        }
+        let { dialog, cancelDialog, submitDialog } = useDealDialog();
         return { dialog, cancelDialog, submitDialog };
     },
 });
