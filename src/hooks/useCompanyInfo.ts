@@ -1,12 +1,12 @@
 import { SetupContext, reactive } from '@vue/composition-api';
 export interface companyInfoType {
-    name: string | null;
-    website: string | null;
-    industry: string | null;
-    addressLineOne: string | null;
-    city: string | null;
-    state: string | null;
-    zipCode: string | null;
+    name: string;
+    website: string;
+    industry: string;
+    addressLineOne: string;
+    city: string;
+    state: string;
+    zipCode: string;
 }
 
 export function useCompanyInfo(context: SetupContext) {
