@@ -1,12 +1,12 @@
 import { SetupContext, reactive } from '@vue/composition-api';
 export interface companyInfoType {
-    name: string;
-    website: string;
-    industry: string;
-    addressLineOne: string;
-    city: string;
-    state: string;
-    zipCode: string;
+    name: string | null;
+    website: string | null;
+    industry: string | null;
+    addressLineOne: string | null;
+    city: string | null;
+    state: string | null;
+    zipCode: string | null;
 }
 
 export function useCompanyInfo(context: SetupContext) {
@@ -19,7 +19,6 @@ export function useCompanyInfo(context: SetupContext) {
         state: '',
         zipCode: '',
     });
-    //TODO Update companyInfo to be prop so cancel will clear input
     function clearCompanyInfo() {
         Object.assign(companyInfo, {
             name: '',
@@ -32,7 +31,7 @@ export function useCompanyInfo(context: SetupContext) {
         });
         context.root.$store.dispatch('clearCompanyInfo');
     }
-    function addCompanyInfo(companyInfoSlot: string, updatedValue: string) {
+    function addCompanyInfo(companyInfoSlot: keyof companyInfoType, updatedValue: string) {
         context.root.$store.dispatch('setCompanyInfo', {
             slot: companyInfoSlot,
             updatedValue,

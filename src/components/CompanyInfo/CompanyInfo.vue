@@ -6,7 +6,7 @@
             </v-row>
             <v-row class="db-just-cent">
                 <v-text-field
-                    placeholder="Name"
+                    label="Name"
                     color="#8e0000"
                     height="2em"
                     v-model="companyInfo.name"
@@ -16,7 +16,7 @@
             <v-row class="db-just-cent">
                 <v-col>
                     <v-text-field
-                        placeholder="Website"
+                        label="Website"
                         color="#8e0000"
                         height="2em"
                         v-model="companyInfo.website"
@@ -25,7 +25,7 @@
                 </v-col>
                 <v-col>
                     <v-text-field
-                        placeholder="Industry"
+                        label="Industry"
                         color="#8e0000"
                         height="2em"
                         v-model="companyInfo.industry"
@@ -35,7 +35,7 @@
             </v-row>
             <v-row class="db-just-cent">
                 <v-text-field
-                    placeholder="Address Line 1"
+                    label="Address Line 1"
                     color="#8e0000"
                     height="2em"
                     v-model="companyInfo.addressLineOne"
@@ -44,7 +44,7 @@
             </v-row>
             <v-row class="db-just-cent">
                 <v-text-field
-                    placeholder="City"
+                    label="City"
                     color="#8e0000"
                     height="2em"
                     v-model="companyInfo.city"
@@ -54,7 +54,7 @@
             <v-row class="db-just-cent">
                 <v-col>
                     <v-text-field
-                        placeholder="State"
+                        label="State"
                         color="#8e0000"
                         height="2em"
                         v-model="companyInfo.state"
@@ -63,7 +63,7 @@
                 </v-col>
                 <v-col>
                     <v-text-field
-                        placeholder="Zip Code"
+                        label="Zip Code"
                         color="#8e0000"
                         height="2em"
                         v-model="companyInfo.zipCode"
@@ -83,7 +83,17 @@ export default defineComponent({
     props: {
         companyInfo: {
             type: Object,
-            default: () => {}
+            default: () => {
+                return {
+                    name: "",
+                    website: "",
+                    industry: "",
+                    addressLineOne: "",
+                    city: "",
+                    state: "",
+                    zipCode: ""
+                };
+            }
         }
     },
     setup(props, context) {

@@ -13,7 +13,9 @@
                     <v-col>
                         <company-info :companyInfo="companyInfo" />
                     </v-col>
-                    <v-col>Card2</v-col>
+                    <v-col>
+                        <deal-info :dealInfo="dealInfo" :financialRanges="financialRanges" />
+                    </v-col>
                 </v-row>
             </v-container>
 
@@ -30,20 +32,33 @@
 
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
-import { useDealDialog } from "@/hooks/useDialog.ts";
 import CompanyInfo from "@/components/CompanyInfo";
+import DealInfo from "@/components/DealInfo";
+import { useDealDialog } from "@/hooks/useDialog.ts";
 import { useCompanyInfo } from "@/hooks/useCompanyInfo";
+import { useDealInfo } from "@/hooks/useDealInfo";
 
 export default defineComponent({
     name: "DealDialog",
     components: {
-        CompanyInfo
+        CompanyInfo,
+        DealInfo
     },
     setup(props, context) {
         const { companyInfo, clearCompanyInfo } = useCompanyInfo(context);
-        const clearFxns: Array<Function> = [clearCompanyInfo];
+        const { dealInfo, financialRanges, clearDealInfo } = useDealInfo(
+            context
+        );
+        const clearFxns: Array<Function> = [clearCompanyInfo, clearDealInfo];
         let { dialog, cancelDialog, submitDialog } = useDealDialog(clearFxns);
-        return { companyInfo, dialog, cancelDialog, submitDialog };
+        return {
+            companyInfo,
+            dealInfo,
+            financialRanges,
+            dialog,
+            cancelDialog,
+            submitDialog
+        };
     }
 });
 </script>
