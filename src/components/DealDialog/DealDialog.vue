@@ -1,9 +1,7 @@
 <template>
     <v-dialog v-model="dialog" width="70%" persistent>
         <template v-slot:activator="{ on }">
-            <v-btn color="#8e0000" v-on="on">
-                New Deal
-            </v-btn>
+            <v-btn color="#8e0000" v-on="on">New Deal</v-btn>
         </template>
 
         <v-card class="db-dialog-card">
@@ -13,11 +11,9 @@
                 </v-row>
                 <v-row class="db-just-cent">
                     <v-col>
-                        Card1
+                        <company-info :companyInfo="companyInfo" />
                     </v-col>
-                    <v-col>
-                        Card2
-                    </v-col>
+                    <v-col>Card2</v-col>
                 </v-row>
             </v-container>
 
@@ -25,28 +21,30 @@
 
             <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="#8e0000" @click="cancelDialog">
-                    Cancel
-                </v-btn>
-                <v-btn color="#8e0000" @click="submitDialog">
-                    Submit
-                </v-btn>
+                <v-btn color="#8e0000" @click="cancelDialog">Cancel</v-btn>
+                <v-btn color="#8e0000" @click="submitDialog">Submit</v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
-import { useDealDialog } from '@/hooks/useDialog.ts';
+import { defineComponent } from "@vue/composition-api";
+import { useDealDialog } from "@/hooks/useDialog.ts";
+import CompanyInfo from "@/components/CompanyInfo";
+import { useCompanyInfo } from "@/hooks/useCompanyInfo";
 
 export default defineComponent({
-    name: 'DealDialog',
-
-    setup() {
-        let { dialog, cancelDialog, submitDialog } = useDealDialog();
-        return { dialog, cancelDialog, submitDialog };
+    name: "DealDialog",
+    components: {
+        CompanyInfo
     },
+    setup(props, context) {
+        const { companyInfo, clearCompanyInfo } = useCompanyInfo(context);
+        const clearFxns: Array<Function> = [clearCompanyInfo];
+        let { dialog, cancelDialog, submitDialog } = useDealDialog(clearFxns);
+        return { companyInfo, dialog, cancelDialog, submitDialog };
+    }
 });
 </script>
 <style scoped>
