@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import { userInfoType } from '@/hooks/useLoginUserInfo.ts';
 import { companyInfoType } from '@/hooks/useCompanyInfo';
+import { dealInfoType } from '@/hooks/useDealInfo';
 
 Vue.use(Vuex);
 
@@ -20,6 +21,12 @@ export default new Vuex.Store({
             city: '',
             state: '',
             zipCode: '',
+        },
+        dealInfo: {
+            revenue: '',
+            EBITDA: '',
+            loanType: '',
+            askingPercent: '',
         },
     },
     mutations: {
@@ -40,6 +47,17 @@ export default new Vuex.Store({
                 zipCode: '',
             };
         },
+        setDealInfo(state, newDealInfo: { slot: keyof dealInfoType; updatedValue: string }) {
+            state.dealInfo[newDealInfo.slot] = newDealInfo.updatedValue;
+        },
+        clearDealInfo(state) {
+            state.dealInfo = {
+                revenue: '',
+                EBITDA: '',
+                loanType: '',
+                askingPercent: '',
+            };
+        },
     },
     actions: {
         setUserInfo({ commit }, payload) {
@@ -50,6 +68,12 @@ export default new Vuex.Store({
         },
         clearCompanyInfo({ commit }) {
             commit('clearCompanyInfo');
+        },
+        setDealInfo({ commit }, payload) {
+            commit('setDealInfo', payload);
+        },
+        clearDealInfo({ commit }) {
+            commit('clearDealInfo');
         },
     },
     getters: {
