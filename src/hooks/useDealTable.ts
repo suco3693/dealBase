@@ -5,7 +5,7 @@ interface extraOptionsTypes {
 }
 
 export function useDealTable() {
-    const headerSet = [
+    const headerSet: Array<Array<any>> = [
         ['Submit Date', {}],
         ['Industry', {}],
         ['EBITDA Range', {}],
@@ -26,7 +26,8 @@ export function useDealTable() {
         );
     }
     const mockDataSet = mockData;
-    const headers = headerSet.map((header: [string, extraOptionsTypes]) => makeHeader(header[0], header[1]));
+    //TODO fix header type
+    const headers = headerSet.map((header: any) => makeHeader(header[0], header[1]));
 
     return {
         headers,
