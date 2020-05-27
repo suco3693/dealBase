@@ -53,13 +53,15 @@
             </v-row>
             <v-row class="db-just-cent">
                 <v-col>
-                    <v-text-field
+                    <v-select
+                        :items="states"
                         label="State"
                         color="#8e0000"
+                        background-color="#FFFF"
                         height="2em"
                         v-model="companyInfo.state"
                         @change="updateCompanyState"
-                    ></v-text-field>
+                    ></v-select>
                 </v-col>
                 <v-col>
                     <v-text-field
@@ -76,25 +78,30 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/composition-api";
-import { useCompanyInfo } from "@/hooks/useCompanyInfo";
+import { usaStates } from '@/assets/usaStates';
+import { defineComponent } from '@vue/composition-api';
+import { useCompanyInfo } from '@/hooks/useCompanyInfo';
 export default defineComponent({
-    name: "CompanyInfo",
+    name: 'CompanyInfo',
     props: {
         companyInfo: {
             type: Object,
             default: () => {
                 return {
-                    name: "",
-                    website: "",
-                    industry: "",
-                    addressLineOne: "",
-                    city: "",
-                    state: "",
-                    zipCode: ""
+                    name: '',
+                    website: '',
+                    industry: '',
+                    addressLineOne: '',
+                    city: '',
+                    state: '',
+                    zipCode: '',
                 };
-            }
-        }
+            },
+        },
+        states: {
+            type: Array,
+            default: () => Object.keys(usaStates),
+        },
     },
     setup(props, context) {
         const {
@@ -104,7 +111,7 @@ export default defineComponent({
             updateCompanyAddress1,
             updateCompanyCity,
             updateCompanyState,
-            updateCompanyZipCode
+            updateCompanyZipCode,
         } = useCompanyInfo(context);
         return {
             updateCompanyName,
@@ -113,9 +120,9 @@ export default defineComponent({
             updateCompanyAddress1,
             updateCompanyCity,
             updateCompanyState,
-            updateCompanyZipCode
+            updateCompanyZipCode,
         };
-    }
+    },
 });
 </script>
 <style scoped>
@@ -127,5 +134,8 @@ export default defineComponent({
 }
 .db-red-font {
     color: #8e0000;
+}
+.v-select__selections input {
+    display: none;
 }
 </style>

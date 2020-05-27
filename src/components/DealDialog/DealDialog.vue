@@ -11,7 +11,7 @@
                 </v-row>
                 <v-row class="db-just-cent">
                     <v-col>
-                        <company-info :companyInfo="companyInfo" />
+                        <company-info :companyInfo="companyInfo" :states="usaStatesAbbrs" />
                     </v-col>
                     <v-col>
                         <deal-info :dealInfo="dealInfo" :financialRanges="financialRanges" />
@@ -31,35 +31,34 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/composition-api";
-import CompanyInfo from "@/components/CompanyInfo";
-import DealInfo from "@/components/DealInfo";
-import { useDealDialog } from "@/hooks/useDialog.ts";
-import { useCompanyInfo } from "@/hooks/useCompanyInfo";
-import { useDealInfo } from "@/hooks/useDealInfo";
+import { defineComponent } from '@vue/composition-api';
+import CompanyInfo from '@/components/CompanyInfo';
+import DealInfo from '@/components/DealInfo';
+import { useDealDialog } from '@/hooks/useDialog.ts';
+import { useCompanyInfo } from '@/hooks/useCompanyInfo';
+import { useDealInfo } from '@/hooks/useDealInfo';
 
 export default defineComponent({
-    name: "DealDialog",
+    name: 'DealDialog',
     components: {
         CompanyInfo,
-        DealInfo
+        DealInfo,
     },
     setup(props, context) {
-        const { companyInfo, clearCompanyInfo } = useCompanyInfo(context);
-        const { dealInfo, financialRanges, clearDealInfo } = useDealInfo(
-            context
-        );
+        const { usaStatesAbbrs, companyInfo, clearCompanyInfo } = useCompanyInfo(context);
+        const { dealInfo, financialRanges, clearDealInfo } = useDealInfo(context);
         const clearFxns: Array<Function> = [clearCompanyInfo, clearDealInfo];
         let { dialog, cancelDialog, submitDialog } = useDealDialog(clearFxns);
         return {
+            usaStatesAbbrs,
             companyInfo,
             dealInfo,
             financialRanges,
             dialog,
             cancelDialog,
-            submitDialog
+            submitDialog,
         };
-    }
+    },
 });
 </script>
 <style scoped>

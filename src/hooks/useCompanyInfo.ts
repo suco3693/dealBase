@@ -1,22 +1,24 @@
 import { SetupContext, reactive } from '@vue/composition-api';
+import { usaStates } from '@/assets/usaStates';
 export interface companyInfoType {
     name: string;
     website: string;
     industry: string;
     addressLineOne: string;
     city: string;
-    state: string;
+    state: keyof typeof usaStates | null;
     zipCode: string;
 }
 
 export function useCompanyInfo(context: SetupContext) {
+    const usaStatesAbbrs = Object.keys(usaStates);
     let companyInfo: companyInfoType = reactive({
         name: '',
         website: '',
         industry: '',
         addressLineOne: '',
         city: '',
-        state: '',
+        state: null,
         zipCode: '',
     });
     function clearCompanyInfo() {
@@ -26,7 +28,7 @@ export function useCompanyInfo(context: SetupContext) {
             industry: '',
             addressLineOne: '',
             city: '',
-            state: '',
+            state: null,
             zipCode: '',
         });
         context.root.$store.dispatch('clearCompanyInfo');
@@ -53,13 +55,14 @@ export function useCompanyInfo(context: SetupContext) {
     function updateCompanyCity(city: string) {
         addCompanyInfo('city', city);
     }
-    function updateCompanyState(state: string) {
-        addCompanyInfo('state', state);
+    function updateCompanyState(state: keyof typeof usaStates) {
+        addCompanyInfo('state', usaStates[state]);
     }
     function updateCompanyZipCode(zipCode: string) {
         addCompanyInfo('zipCode', zipCode);
     }
     return {
+        usaStatesAbbrs,
         companyInfo,
         clearCompanyInfo,
         updateCompanyName,
