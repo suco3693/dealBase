@@ -5,30 +5,30 @@
                 <h1 class="db-red-font">DealInfo</h1>
             </v-row>
             <v-row class="db-just-cent db-text-spacing">
-                <v-select
-                    :items="financialRanges"
+                <v-text-field
                     label="Revenue"
                     color="#8e0000"
-                    background-color="#FFFF"
+                    suffix="M($)"
                     height="2em"
+                    type="number"
                     v-model="dealInfo.revenue"
                     @change="updateDealRevenue"
-                ></v-select>
-            </v-row>
-            <v-row class="db-just-cent db-text-spacing">
-                <v-select
-                    :items="financialRanges"
-                    label="EBITDA"
-                    color="#8e0000"
-                    background-color="#FFFF"
-                    height="2em"
-                    v-model="dealInfo.EBITDA"
-                    @change="updateDealEBITDA"
-                ></v-select>
+                ></v-text-field>
             </v-row>
             <v-row class="db-just-cent db-text-spacing">
                 <v-text-field
-                    placeholder="Loan Type"
+                    label="EBITDA"
+                    color="#8e0000"
+                    suffix="M($)"
+                    height="2em"
+                    type="number"
+                    v-model="dealInfo.EBITDA"
+                    @change="updateDealEBITDA"
+                ></v-text-field>
+            </v-row>
+            <v-row class="db-just-cent db-text-spacing">
+                <v-text-field
+                    label="Loan Type"
                     color="#8e0000"
                     height="2em"
                     v-model="dealInfo.loanType"
@@ -37,7 +37,7 @@
             </v-row>
             <v-row class="db-just-cent db-text-spacing">
                 <v-text-field
-                    placeholder="Asking % Interest"
+                    label="Asking % Interest"
                     color="#8e0000"
                     suffix="%"
                     height="2em"
@@ -51,10 +51,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/composition-api";
-import { useDealInfo } from "@/hooks/useDealInfo";
+import { defineComponent } from '@vue/composition-api';
+import { useDealInfo } from '@/hooks/useDealInfo';
 export default defineComponent({
-    name: "DealInfo",
+    name: 'DealInfo',
     props: {
         dealInfo: {
             type: Object,
@@ -63,37 +63,20 @@ export default defineComponent({
                     revenue: null,
                     EBITDA: null,
                     loanType: null,
-                    askingPercent: null
+                    askingPercent: null,
                 };
-            }
+            },
         },
-        financialRanges: {
-            type: Array,
-            default: () => [
-                "<1M",
-                "1M-5M",
-                "6M-10M",
-                "11M-20M",
-                "21M-50M",
-                "50M-100M",
-                ">100M"
-            ]
-        }
     },
     setup(props, context) {
-        let {
-            updateDealRevenue,
-            updateDealEBITDA,
-            updateDealLoanType,
-            updateDealPercent
-        } = useDealInfo(context);
+        let { updateDealRevenue, updateDealEBITDA, updateDealLoanType, updateDealPercent } = useDealInfo(context);
         return {
             updateDealRevenue,
             updateDealEBITDA,
             updateDealLoanType,
-            updateDealPercent
+            updateDealPercent,
         };
-    }
+    },
 });
 </script>
 <style>

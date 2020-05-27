@@ -14,7 +14,7 @@
                         <company-info :companyInfo="companyInfo" :states="usaStatesAbbrs" />
                     </v-col>
                     <v-col>
-                        <deal-info :dealInfo="dealInfo" :financialRanges="financialRanges" />
+                        <deal-info :dealInfo="dealInfo" />
                     </v-col>
                 </v-row>
             </v-container>
@@ -46,14 +46,13 @@ export default defineComponent({
     },
     setup(props, context) {
         const { usaStatesAbbrs, companyInfo, clearCompanyInfo } = useCompanyInfo(context);
-        const { dealInfo, financialRanges, clearDealInfo } = useDealInfo(context);
+        const { dealInfo, clearDealInfo } = useDealInfo(context);
         const clearFxns: Array<Function> = [clearCompanyInfo, clearDealInfo];
         let { dialog, cancelDialog, submitDialog } = useDealDialog(clearFxns);
         return {
             usaStatesAbbrs,
             companyInfo,
             dealInfo,
-            financialRanges,
             dialog,
             cancelDialog,
             submitDialog,

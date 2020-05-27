@@ -1,12 +1,11 @@
 import { SetupContext, reactive } from '@vue/composition-api';
 
 export interface dealInfoType {
-    revenue: typeof financialRanges | null;
-    EBITDA: typeof financialRanges | null;
+    revenue: number | null;
+    EBITDA: number | null;
     loanType: string | null;
     askingPercent: number | null;
 }
-const financialRanges = ['<1M', '1M-5M', '6M-10M', '11M-20M', '21M-50M', '50M-100M', '>100M'];
 export function useDealInfo(context: SetupContext) {
     let dealInfo: dealInfoType = reactive({
         revenue: null,
@@ -23,10 +22,7 @@ export function useDealInfo(context: SetupContext) {
         });
         context.root.$store.dispatch('clearDealInfo');
     }
-    function addDealInfo(
-        dealInfoSlot: keyof dealInfoType,
-        updatedValue: dealInfoType['revenue'] | dealInfoType['loanType'] | dealInfoType['askingPercent'],
-    ) {
+    function addDealInfo(dealInfoSlot: keyof dealInfoType, updatedValue: string | number | null) {
         context.root.$store.dispatch('setDealInfo', {
             slot: dealInfoSlot,
             updatedValue,
@@ -45,7 +41,6 @@ export function useDealInfo(context: SetupContext) {
         addDealInfo('askingPercent', askingPercent);
     }
     return {
-        financialRanges,
         dealInfo,
         clearDealInfo,
         updateDealRevenue,
