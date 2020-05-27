@@ -1,4 +1,4 @@
-import { ref, SetupContext } from '@vue/composition-api';
+import { ref } from '@vue/composition-api';
 
 export function useDealDialog(clearFxns: Array<Function>) {
     let dialog = ref(false);

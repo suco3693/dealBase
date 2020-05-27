@@ -56,7 +56,7 @@ export function useCompanyInfo(context: SetupContext) {
         addCompanyInfo('city', city);
     }
     function updateCompanyState(state: keyof typeof usaStates) {
-        addCompanyInfo('state', usaStates[state]);
+        addCompanyInfo('state', state);
     }
     function updateCompanyZipCode(zipCode: string) {
         addCompanyInfo('zipCode', zipCode);
