@@ -10,6 +10,7 @@ export function useDealDialog(clearFxns: Array<Function>) {
     }
     function submitDialog() {
         closeDialog();
+        //TODO add post request
         // clearInputsAndState();
     }
     function cancelDialog() {
