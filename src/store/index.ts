@@ -11,7 +11,9 @@ export default new Vuex.Store({
         userInfo: {
             firstName: '',
             lastName: '',
+            company: '',
             email: '',
+            phone: '',
         },
         companyInfo: {
             name: '',
@@ -30,8 +32,12 @@ export default new Vuex.Store({
         },
     },
     mutations: {
+        //TODO merge setUserInfo with setUserInfoField
         setUserInfo(state, newUserInfo: userInfoType) {
             state.userInfo = newUserInfo;
+        },
+        setUserInfoField(state, newUserInfo: { field: keyof userInfoType; updatedValue: string }) {
+            state.userInfo[newUserInfo.field] = newUserInfo.updatedValue;
         },
         setCompanyInfo(state, newCompanyInfo: { slot: keyof companyInfoType; updatedValue: string }) {
             state.companyInfo[newCompanyInfo.slot] = newCompanyInfo.updatedValue;
@@ -62,6 +68,9 @@ export default new Vuex.Store({
     actions: {
         setUserInfo({ commit }, payload) {
             commit('setUserInfo', payload);
+        },
+        setUserInfoField({ commit }, payload) {
+            commit('setUserInfoField', payload);
         },
         setCompanyInfo({ commit }, payload) {
             commit('setCompanyInfo', payload);
