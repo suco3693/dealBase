@@ -10,30 +10,30 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
-import { mapActions } from 'vuex';
-import LoginCard from '@/components/LoginCard';
+import { defineComponent } from "@vue/composition-api";
+import { mapActions } from "vuex";
+import LoginCard from "@/components/LoginCard";
 // eslint-disable-next-line no-unused-vars
-import { userInfoType } from '@/hooks/useLoginUserInfo.ts';
-import { useRouter } from '@/hooks/useRouter.ts';
+import { userInfoType } from "@/hooks/useLoginUserInfo.ts";
+import { useRouter } from "@/hooks/useRouter.ts";
 
 export default defineComponent({
-    name: 'LandingPage',
+    name: "LandingPage",
     components: {
-        LoginCard,
+        LoginCard
     },
     setup(props, context) {
-        mapActions(['setUserInfo']);
+        mapActions(["setUserInfo"]);
         const { changePage } = useRouter();
         function saveUserInfo(userInfo: userInfoType) {
-            context.root.$store.dispatch('setUserInfo', userInfo);
-            changePage(context.root.$router, 'Deals', {});
+            context.root.$store.dispatch("setUserInfo", userInfo);
+            changePage(context.root.$router, "Deals", {});
         }
 
         return {
-            saveUserInfo,
+            saveUserInfo
         };
-    },
+    }
 });
 </script>
 <style scoped>

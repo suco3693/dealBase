@@ -23,13 +23,17 @@ export default defineComponent({
         },
         value: {
             type: String,
-            default: ""
+            default: "null"
         }
     },
     setup(props, context) {
         let edit = ref(false);
         let newValue = ref(props.value);
         function emitValue(updatedValue: string) {
+            if (!updatedValue.length) {
+                newValue.value = "null";
+                updatedValue = "null";
+            }
             context.emit("updated", {
                 field: props.field,
                 updatedValue
