@@ -34,13 +34,6 @@ export default defineComponent({
     },
     setup(props, context) {
         const user = reactive(context.root.$store.getters.getUserInfo);
-        // const user = reactive({
-        //     firstName: "John",
-        //     lastName: "Doe",
-        //     company: "Facebook",
-        //     email: "john.doe@fb.com",
-        //     phone: "666-666-6666"
-        // });
         function updateValue(valuePayload: valuePayloadType) {
             let { field, updatedValue } = valuePayload;
             Vue.set(user, field, updatedValue);
