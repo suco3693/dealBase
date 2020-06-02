@@ -7,7 +7,11 @@
                     <h3>{{key}}</h3>
                 </v-col>
                 <v-col class="db-col-center">
-                    <text-input-switch :field="key" :value="val" @updated="updateValue" />
+                    <text-input-switch
+                        :field="key"
+                        :value="checkEmptyVal(val)"
+                        @updated="updateValue"
+                    />
                 </v-col>
             </v-row>
             <h6>*Click value to change & Hit Enter to Submit</h6>
@@ -29,21 +33,22 @@ export default defineComponent({
         TextInputSwitch
     },
     setup(props, context) {
-        const user = reactive({
-            firstName: "John",
-            lastName: "Doe",
-            company: "Facebook",
-            email: "john.doe@fb.com",
-            phone: "666-666-6666"
-        });
+        const user = reactive(context.root.$store.getters.getUserInfo);
         function updateValue(valuePayload: valuePayloadType) {
             let { field, updatedValue } = valuePayload;
             Vue.set(user, field, updatedValue);
             context.root.$store.dispatch("setUserInfoField", valuePayload);
         }
+        function checkEmptyVal(val: string) {
+            if (!val.length) {
+                return "null";
+            }
+            return val;
+        }
         return {
             user,
-            updateValue
+            updateValue,
+            checkEmptyVal
         };
     }
 });
